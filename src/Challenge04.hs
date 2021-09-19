@@ -17,5 +17,5 @@ c4 = do
     corpus <- T.readFile "data/muchadoaboutnothing.txt"
     let frequencyMap = createFrequencyMap corpus
     ctexts <- B.readFile "data/c4.txt" >>= \s -> return $ B.lines s
-    let solutions = map (decryptXOR frequencyMap . decodeHex) ctexts
+    let solutions = map (snd . decryptXOR frequencyMap . decodeHex) ctexts
     B.putStrLn $ maximumBy (compare `on` scoreText frequencyMap) solutions

@@ -12,10 +12,11 @@ c5 = do
     let key = "ICE"
     B.putStrLn $ encodeHex $ encryptRepeatingKeyXOR key plaintext
 
+-- Repeat the provided string until we've reached the length given.
 strictCycle :: Int -> ByteString -> ByteString
 strictCycle n bs
     | n <= B.length bs = B.take n bs
-    | otherwise      = B.append bs $ strictCycle (n - B.length bs) bs
-    
+    | otherwise        = B.append bs $ strictCycle (n - B.length bs) bs
+
 encryptRepeatingKeyXOR :: ByteString -> ByteString -> ByteString
 encryptRepeatingKeyXOR key plaintext = fixedXOR plaintext $ strictCycle (B.length plaintext) key 

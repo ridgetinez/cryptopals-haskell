@@ -23,13 +23,13 @@ c3 :: IO ()
 c3 = do 
     corpus <- T.readFile "data/muchadoaboutnothing.txt"
     let frequencyMap = createFrequencyMap corpus
-    B.putStrLn $ decryptXOR frequencyMap (decodeHex "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736")
+    B.putStrLn $ snd $ decryptXOR frequencyMap (decodeHex "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736")
 
-decryptXOR :: FreqMap -> ByteString -> ByteString
-decryptXOR f s = maximumBy (compare `on` scoreText f) (decryptXORAllKeys s)
+decryptXOR :: FreqMap -> ByteString -> (Char,ByteString)
+decryptXOR f s = maximumBy (compare `on` (scoreText f . snd)) (decryptXORAllKeys s)
 
-decryptXORAllKeys :: ByteString -> [ByteString]
-decryptXORAllKeys ciphertxt = map (applyXOR ciphertxt) keys
+decryptXORAllKeys :: ByteString -> [(Char,ByteString)]
+decryptXORAllKeys ciphertxt = zip keys $ map (applyXOR ciphertxt) keys
     where keys = map chr [1..255]
           applyXOR bs k = fixedXOR bs $ B.replicate (B.length bs) k
 

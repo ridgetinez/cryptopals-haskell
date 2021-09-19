@@ -26,6 +26,7 @@ dependencies:
 - bytestring
 - containers
 - text
+- split
 
 library:
   source-dirs: src
