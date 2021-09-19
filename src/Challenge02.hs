@@ -11,6 +11,9 @@ import qualified Data.ByteString.Base16 as B16
 decodeHex :: ByteString -> ByteString
 decodeHex = fromRight B.empty . B16.decode
 
+encodeHex :: ByteString -> ByteString
+encodeHex = B16.encode
+
 fixedXOR :: ByteString -> ByteString -> ByteString
 fixedXOR x y = B.pack $ B.zipWith xor x y
 
