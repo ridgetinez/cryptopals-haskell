@@ -31,16 +31,24 @@ library
       Challenge04
       Challenge05
       Challenge06
+      Challenge07
+      Challenge08
+      Challenge09
+      Challenge10
+      Challenge11
   default-language: Haskell2010
   other-modules:
       Paths_cryptopals
   hs-source-dirs:
       src
   build-depends:
-      base >=4.7 && <5
+      QuickCheck
+    , base >=4.7 && <5
     , base16-bytestring
     , base64-bytestring
     , bytestring
     , containers
+    , cryptonite
+    , random
     , split
     , text
