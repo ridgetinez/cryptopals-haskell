@@ -36,6 +36,9 @@ library
       Challenge09
       Challenge10
       Challenge11
+      Challenge12
+      MonadTutorial
+      StateTutorial
   default-language: Haskell2010
   other-modules:
       Paths_cryptopals
@@ -52,3 +55,4 @@ library
     , random
     , split
     , text
+    , transformers
